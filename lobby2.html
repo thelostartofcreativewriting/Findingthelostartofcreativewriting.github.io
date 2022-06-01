@@ -39,7 +39,7 @@
           
         </div>
   <div class="container-fluid all-show">
-    <a class="navbar-brand" href="https://thelostartofcreativewriting.github.io/Findingthelostartofcreativewriting.github.io/" style="color: #f3e3d3;">Finding the lost art of creative writing<i class="fa fa-codepen"></i></a>
+    <a class="navbar-brand" href="index.html" style="color: #f3e3d3;">Finding the lost art of creative writing<i class="fa fa-codepen"></i></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -73,6 +73,10 @@
 
         <li class="nav-item">       
           <a class="nav-link active text-muted" style="color: gray;" aria-current="page" href="about.html">About us</a>
+        </li>
+
+        <li class="nav-item">       
+          <a class="nav-link active text-muted" style="color: gray;" aria-current="page" href="references.html">REFERENCES</a>
         </li>
 
         <!-- <li class="nav-item">
@@ -185,6 +189,58 @@ $(document).ready(function() {
             $("#myModal").modal('show');
         });
     });
+
+    var rectangle = $("#Rectangle");
+var speechBubble = $("#SpeechBubble");
+
+// The the user hovers the mouse over
+// the rectangle the "expand-bounce"
+//animation is called and the duration
+// is set to 250 miliseconds.
+// When the user moves the mouse away
+// the "shrink" animation gets called
+// and the duration is set to 100
+// miliseconds.
+var rectangle = $("#Rectangle");
+var speechBubble = $("#SpeechBubble");
+
+// The the user hovers the mouse over
+// the rectangle the "expand-bounce"
+//animation is called and the duration
+// is set to 250 miliseconds.
+// When the user moves the mouse away
+// the "shrink" animation gets called
+// and the duration is set to 100
+// miliseconds.
+rectangle.hover(
+  function() {
+    speechBubble.css({
+      "animation-name": "expand-bounce",
+      "animation-duration": "0.25s"
+    });
+  },
+  function() {
+    speechBubble.css({
+      "animation-name": "shrink",
+      "animation-duration": "0.1s"
+    });
+  }
+);
+
+// window.addEventListener("load", function(){
+//     setTimeout(
+//         function open(event){
+//             document.querySelector(".popup").style.display = "block";
+//         },
+//         500 
+//     )
+// });
+
+
+document.querySelector("#close").addEventListener("click", function(){
+    document.querySelector(".popup").style.display = "none";
+});
+
 </script>
 <style>
   *{
@@ -613,9 +669,7 @@ ul{
 
 @import "bourbon";
 
-/* modified from 
-   https://www.ilikepixels.co.uk/drop/bubbler/ 
-*/ 
+
 
 a {
   color: #fff; 
@@ -651,6 +705,8 @@ a {
   line-height: 1.25em;
 }
 
+
+
 .bubble.left:after {
   content: '';
   position: absolute;
@@ -680,7 +736,7 @@ a {
   margin-top: -16px;
 }
 
-.bubble.left:hover{
+.bubble.right:hover{
      transform: scale(1.1);
     box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
 }
@@ -734,7 +790,509 @@ a {
   100% {background-position:0 -100%,0 0}
 }
 
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+@import url("https://fonts.googleapis.com/css?family=Merriweather:400,700");
+
+
+/* #Rectangle is given a relative position so that 
+#SpeechBubble (its child) can be positioned correctly. 
+Without this step, #SpeechBubble  will be positioned 
+relative to the body instead */
+#Rectangle {
+  margin: 90px auto;
+  background-color: #ff5a5a;
+  width: 100px;
+  height: 200px;
+  position: relative;
+}
+
+/* #SpeechBubble is set as a child of #Rectangle to make positioning
+it easier. #SpeechBubble is given an absolute position so that its 
+position is relative to the #Rectangle (its parent). Its scale is 
+set to zero since it should only appear when the mouse hovers over
+#Rectangle. The 'animation-fill-mode' property is set to 'forwards' 
+so that  the scale value stays at 1 after the animation finishes, 
+otherwise  #SpeechBubble will disappear once the animation finishes. 
+The 'animation-name' property is omitted since it's going to be 
+set by jQuery instead */
+#SpeechBubble {
+  position: absolute;
+  transform-origin: 0% 100%;
+  text-align: center;
+  background-color: #5a5a5a;
+  color: white;
+  border-radius: 10px;
+  width: 120px;
+  padding: 10px;
+  left: 110px;
+  top: -75px;
+  transform: scale(0);
+  animation-fill-mode: forwards;
+}
+/* We need to add a tail to the speech bubble. This is done using
+the ::before pseudo-element. The tail's size is controlled by 
+its borders. The right and bottom borders are given a transparent
+color so that the tail still retains its shape while giving the
+desired look */
+#SpeechBubble::before {
+  content: "";
+  display: block;
+  width: 0;
+  position: absolute;
+  bottom: -25px;
+  left: 5px;
+  border-style: solid;
+  border-width: 15px;
+  border-color: #5a5a5a transparent transparent #5a5a5a;
+  transform: rotate(10deg);
+}
+
+/* Here the scale changes from 0 to 1. To add the bounciness 
+effect, the scale is set to 1.25 midway through the animation
+to give the animation a nicer effect. */
+@keyframes expand-bounce {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Here the scale simply goes from 1 back to 0 */
+@keyframes shrink {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+.talk-bubble1 {
+	margin: 40px;
+  display: inline-block;
+  position: relative;
+	width: 200px;
+	height: auto;
+	background-color: lightyellow;
+  margin-right: 60rem;
+}
+.border{
+  border: 8px solid #666;
+}
+.round{
+  border-radius: 30px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+
+}
+
+/* Right triangle placed top left flush. */
+.tri-right.border.left-top:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: -40px;
+	right: auto;
+  top: -8px;
+	bottom: auto;
+	border: 32px solid;
+	border-color: #666 transparent transparent transparent;
+}
+.tri-right.left-top:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: -20px;
+	right: auto;
+  top: 0px;
+	bottom: auto;
+	border: 22px solid;
+	border-color: lightyellow transparent transparent transparent;
+}
+
+/* Right triangle, left side slightly down */
+.tri-right.border.left-in:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: -40px;
+	right: auto;
+  top: 30px;
+	bottom: auto;
+	border: 20px solid;
+	border-color: #666 #666 transparent transparent;
+}
+.tri-right.left-in:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: -20px;
+	right: auto;
+  top: 38px;
+	bottom: auto;
+	border: 12px solid;
+	border-color: lightyellow lightyellow transparent transparent;
+}
+
+/*Right triangle, placed bottom left side slightly in*/
+.tri-right.border.btm-left:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: -8px;
+  right: auto;
+  top: auto;
+	bottom: -40px;
+	border: 32px solid;
+	border-color: transparent transparent transparent #666;
+}
+.tri-right.btm-left:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 0px;
+  right: auto;
+  top: auto;
+	bottom: -20px;
+	border: 22px solid;
+	border-color: transparent transparent transparent lightyellow;
+}
+
+/*Right triangle, placed bottom left side slightly in*/
+.tri-right.border.btm-left-in:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 30px;
+  right: auto;
+  top: auto;
+	bottom: -40px;
+	border: 20px solid;
+	border-color: #666 transparent transparent #666;
+}
+.tri-right.btm-left-in:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 38px;
+  right: auto;
+  top: auto;
+	bottom: -20px;
+	border: 12px solid;
+	border-color: lightyellow transparent transparent lightyellow;
+}
+
+/*Right triangle, placed bottom right side slightly in*/
+.tri-right.border.btm-right-in:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: auto;
+	right: 30px;
+	bottom: -40px;
+	border: 20px solid;
+	border-color: #666 #666 transparent transparent;
+}
+.tri-right.btm-right-in:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: auto;
+	right: 38px;
+	bottom: -20px;
+	border: 12px solid;
+	border-color: lightyellow lightyellow transparent transparent;
+}
+/*
+	left: -8px;
+  right: auto;
+  top: auto;
+	bottom: -40px;
+	border: 32px solid;
+	border-color: transparent transparent transparent #666;
+	left: 0px;
+  right: auto;
+  top: auto;
+	bottom: -20px;
+	border: 22px solid;
+	border-color: transparent transparent transparent lightyellow;
+
+/*Right triangle, placed bottom right side slightly in*/
+.tri-right.border.btm-right:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: auto;
+	right: -8px;
+	bottom: -40px;
+	border: 20px solid;
+	border-color: #666 #666 transparent transparent;
+}
+.tri-right.btm-right:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: auto;
+	right: 0px;
+	bottom: -20px;
+	border: 12px solid;
+	border-color: lightyellow lightyellow transparent transparent;
+}
+
+/* Right triangle, right side slightly down*/
+.tri-right.border.right-in:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: auto;
+	right: -40px;
+  top: 30px;
+	bottom: auto;
+	border: 20px solid;
+	border-color: #666 transparent transparent #666;
+}
+.tri-right.right-in:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: auto;
+	right: -20px;
+  top: 38px;
+	bottom: auto;
+	border: 12px solid;
+	border-color: lightyellow transparent transparent lightyellow;
+}
+
+/* Right triangle placed top right flush. */
+.tri-right.border.right-top:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: auto;
+	right: -40px;
+  top: -8px;
+	bottom: auto;
+	border: 32px solid;
+	border-color: #666 transparent transparent transparent;
+}
+.tri-right.right-top:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+  left: auto;
+	right: -20px;
+  top: 0px;
+	bottom: auto;
+	border: 20px solid;
+	border-color: lightyellow transparent transparent transparent;
+}
+
+/* talk bubble contents */
+.talktext{
+  padding: 1em;
+	text-align: left;
+  line-height: 1.5em;
+}
+.talktext p{
+  /* remove webkit p margins */
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+}
+
+
+a.popup-link {
+padding:17px 0;
+text-align: center;
+margin:10% auto;
+position: relative;
+width: 300px;
+color: #fff;
+text-decoration: none;
+background-color: #FFBA00;
+border-radius: 3px;
+box-shadow: 0 5px 0px 0px #eea900;
+display: block;
+}
+a.popup-link:hover {
+background-color: #ff9900;
+box-shadow: 0 3px 0px 0px #eea900;
+-webkit-transition:all 1s;
+transition:all 1s;
+}
+/* end link popup*/
+/* animasi popup */@-webkit-keyframes autopopup {
+from {opacity: 0;margin-top:-200px;}
+to {opacity: 1;}
+}
+@-moz-keyframes autopopup {
+from {opacity: 0;margin-top:-200px;}
+to {opacity: 1;}
+}
+@keyframes autopopup {
+from {opacity: 0;margin-top:-200px;}
+to {opacity: 1;}
+}
+/* end animasi popup */
+/*style untuk popup */
+#popup {
+background-color: rgba(0,0,0,0.7);
+position: fixed;
+top:0;
+left:0;
+right:0;
+bottom:0;
+margin:0;
+-webkit-animation:autopopup 2s;
+-moz-animation:autopopup 2s;
+animation:autopopup 2s;
+}
+#popup:target {
+-webkit-transition:all 1s;
+-moz-transition:all 1s;
+transition:all 1s;
+opacity: 0;
+visibility: hidden;
+}@media (min-width: 768px){
+.popup-container {
+width:600px;
+}
+}
+@media (max-width: 767px){
+.popup-container {
+width:100%;
+}
+}
+.popup-container {
+position: relative;
+margin:7% auto;
+padding:30px 50px;
+background-color: #fafafa;
+color:#333;
+border-radius: 3px;
+}a.popup-close {
+position: absolute;
+top:3px;
+right:3px;
+background-color: #333;
+padding:7px 10px;
+font-size: 20px;
+text-decoration: none;
+line-height: 1;
+color:#fff;
+}
+/* end style popup *//* style untuk isi popup */
+.popup-form {
+margin:10px auto;
+}
+.popup-form h2 {
+margin-bottom: 5px;
+font-size: 37px;
+text-transform: uppercase;
+}
+.popup-form .input-group {
+margin:10px auto;
+}
+.popup-form .input-group input {
+padding:17px;
+text-align: center;
+margin-bottom: 10px;
+border-radius:3px;
+font-size: 16px;
+display: block;
+width: 100%;
+}
+.popup-form .input-group input:focus {
+outline-color:#FB8833;
+}
+.popup-form .input-group input[type=”email”] {
+border:0px;
+position: relative;
+}
+.popup-form .input-group input[type=”submit”] {
+background-color: #FB8833;
+color: #fff;
+border: 0;
+cursor: pointer;
+}
+.popup-form .input-group input[type=”submit”]:focus {
+box-shadow: inset 0 3px 7px 3px #ea7722;
+}
+
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.popup{
+    background-color: #ffffff;
+    width: 420px;
+    padding: 30px 40px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+    border-radius: 8px;
+    font-family: "Poppins",sans-serif;
+    display: none; 
+    text-align: center;
+}
+.popup button{
+    display: block;
+    margin:  0 0 20px auto;
+    background-color: transparent;
+    font-size: 30px;
+    color: #ffffff;
+    background: #03549a;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.popup h2{
+  margin-top: -20px;
+}
+.popup p{
+    font-size: 14px;
+    text-align: justify;
+    margin: 20px 0;
+    line-height: 25px;
+}
+
+.bot{
+  border-radius: 70%;
+  background-color: #665f5f;
+  color: #000000;
+}
+
+
+
 </style>
+
 
 <!-- <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -759,11 +1317,53 @@ a {
    </a>
   </div> -->
 
+
+
+  <!-- <div class="popup">
+    <button id="close">&times;</button>
+
+    <h2>FINDING THE LOST ART OF CREATIVE WRITING</h2>
+    <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita distinctio fugiat alias iure qui, commodi minima magni ullam aliquam dignissimos?
+    </p>
+    <a href="#">Let's Go</a>
+    <button type="button" class="btn btn-secondary" data-dismiss="popup">Close</button>
+
+  </div> -->
+
+  <!-- button -->
+
+  
+    <!-- button -->
+  
+
+
+              <!-- modal -->
+              
+              <div class="d-flex justify-content-start">
+              
+                <div id="myModal1" class="modal fade bd-example-modal-lg mt-5 ">
+                  <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" style="font-family: Bungee; margin-top: 1rem;">Press the rooms <span style="color: rgb(219, 167, 12);"><i class="fa fa-arrow-up"></i></span> button above and select a room to visit </h5>   
+                          </div>
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="#myModal1" style="font-family: Bungee;">Click the screen below to close this dialog</button>
+                          
+                         
+                      </div>
+                  </div>
+                </div> 
+              <!-- modal -->
+
+
+
+  
       <section class="mt-4 py-5 mb-5">
-       <div class="container">
-        <div class="column">
+        
+       <div class="container">   
           <div class="column col-lg-12 d-flex justify-content-center">
-            
+
             <div class="col-md-12">
               <p class="text-center "> 
                 <a href="museum.html" class=" text-center" style="color: #172321;">
@@ -795,23 +1395,76 @@ a {
           </a> -->
         </p>
     </div>
+    <div class="col-md-2">
+      <p class="text-center "> 
+        <a href="museum.html" class=" text-center" style="color: #172321;">
+          
+        </a>
+        <!-- <a href="museum.html" class="btn text-center boton1 btn-default" style="">
+          Literature room!
+        </a> -->
+      </p>
+  </div>
+  <div class="col-md-2">
+    <p class="text-center "> 
+      <a href="museum.html" class=" text-center" style="color: #172321;">
+        
+      </a>
+      <!-- <a href="museum.html" class="btn text-center boton1 btn-default" style="">
+        Literature room!
+      </a> -->
+    </p>
+</div>
 
+          
+
+          
            <div class="col-md-12">
             <div id="bubbles">
               <div class="bubble-wrap">
-                <div class="bubble left">
+                <div class="bubble right">
                 <p class="type" style="--n:70">  Welcome to Re-Cover: Finding the Lost Art of Creative Writing's Online Exhibit! In this website, you will learn about the presence of creative writing in different aspects of media and entertainment; some might be obvious, but others will be unexpected!</p>  
                 </div>
               </div>
               <div class="bubble-wrap">
-                <div class="bubble left">
-                  <p class="type" style="--n:70">We want to show young people how common the use of creative writing is in their lives - from pocketbooks all the way to the games you play! In the process, maybe we can even inspire a few young minds to dabble into the art of writing creative fiction.    
+                <div class="bubble right">
+                  
+                  <p class="type" style="--n:70">We want to show young people how common the use of creative writing is in their lives - from pocketbooks all the way to the games you play! In the process, maybe we can even inspire a few young minds to dabble into the art of writing creative fiction. Without further ado let's begin your tour by pressing the rooms button in the navigation bar above! 
+                    <!-- <a href="#exampleModal" class="btn text-center boton1 btn-default" data-bs-toggle="modal"role="button" style="font-size: 10px;">
+                      View instruction
+                    </a> -->
+
+                    <!-- the modal -->
+                    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            ...
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div> -->
+                       
                   </p>  
                 </div>
               </div>
             </div>   
             <!-- modal -->
-          
+
+            <!-- <div class="d-flex justify-content-end">
+              <div class="container" >
+                <button class="btn btn-primary">Click here</button>
+            </div>
+            </div>
+           -->
             </div>
             <div class="row col-md-12 d-flex justify-content-center">
               <a href="index.html" class=" text-center  btn-default" style="float: left; margin-right: 5px;"></a>
@@ -828,9 +1481,26 @@ a {
                   <a href="lobby2.html" class="btn btn-warning" style="font-family: 'Bungee';">Close</a>
               </div>
               <div class="modal-content">
-                  <div class="modal-body">
-                    <img class="img-fluid" src="map.png" style=" width:auto">
+                <iframe width="90%" height="500px" allowFullScreen="true" allow="accelerometer; magnetometer; gyroscope" style="display:block; margin:20px auto; border:0 none; max-width:880px;border-radius:8px; box-shadow: 0 1px 1px rgba(0,0,0,0.11),0 2px 2px rgba(0,0,0,0.11),0 4px 4px rgba(0,0,0,0.11),0 6px 8px rgba(0,0,0,0.11),0 8px 16px rgba(0,0,0,0.11);" src="https://panoraven.com/en/embed/zyQEuaVrMy"></iframe>
+                <li class="nav-item dropdown boton1 d-flex justify-content-center col-sm-12">
+                  <a class="nav-link dropdown-toggle  d-flex justify-content-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Rooms
+                  </a>
+                  <div class="dropdown-menu" style="background-color: #efcead;" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="literatureroom.html" style="font-family: bungee; color: #172321"><i class="fa fa-book" style="color: #00008B;"></i>&nbsp Literature</a>
+                    <a class="dropdown-item" href="movies.html" style="font-family: bungee; color: #172321"><i class="fa fa-film" style="color:#000000"></i>&nbsp Movies</a>
+                    <a class="dropdown-item" href="animation.html" style="font-family: bungee; color: #172321"><i class="fa fa-desktop fa-bounce" style="color:#000000"></i>&nbsp Animations</a>
+                    <a class="dropdown-item" href="videogames.html" style="font-family: bungee; color: #172321"><i class="fa fa-gamepad" style="color:#008ac0"></i>&nbsp Games</a>
+                    <a class="dropdown-item" href="advertising.html" style="font-family: bungee; color: #172321"><i class="fa fa-ad" style="color:#c3a720"></i>&nbsp Advertising</a>
+                    <a class="dropdown-item" href="comics.html" style="font-family: bungee; color: #172321"><i class="fa fa-newspaper" style="color:#c51616"></i>&nbsp Comics</a>
+                    <a class="dropdown-item" href="theater.html" style="font-family: bungee; color: #172321"><i class="fa fa-theater-masks" style="color:#00a6ff"></i> Theater</a>
+                    <a class="dropdown-item" href="workshop.html" style="font-family: bungee; color: #172321"><i class="fa fa-cog" style="color:#665f5f"></i> Workshop</a>
+                    <a class="dropdown-item" href="activityroom.html" style="font-family: bungee; color: #172321"><i class="fa fa-tasks" style="color:#109cab"></i> Activity</a>
+                 
+                    <!-- <div class="dropdown-divider" style="background-color: #efcead;"></div> -->
+                    <!-- <a class="dropdown-item" href="#">Something else here</a> -->
                   </div>
+                </li>
               </div>
             </div>
         </div> 
@@ -839,6 +1509,8 @@ a {
         </div>
        </div>
       </section>
+    
+     
   </body>
 </html>
 
